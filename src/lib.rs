@@ -202,6 +202,9 @@ pub mod prelude {
         pdf::rect::*,
         pdfium::*,
     };
+
+    #[cfg(feature = "dates")]
+    pub use crate::pdf::date::*;
 }
 
 #[cfg(test)]

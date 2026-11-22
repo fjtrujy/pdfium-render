@@ -2,7 +2,7 @@
 name = "pdfium-render"
 version = "0.9.7"
 edition = "2021"
-rust-version = "1.61"
+rust-version = "1.70"
 publish = true
 description = "A high-level idiomatic Rust wrapper around Pdfium, the C++ PDF library used by the Google Chromium project."
 readme = "README.md"
@@ -28,6 +28,7 @@ image_025 = { package = "image", version = "0.25", optional = true, default-feat
 image_024 = { package = "image", version = "0.24", optional = true, default-features = false, features = ["jpeg"]}
 image_023 = { package = "image", version = "0.23", optional = true, default-features = false, features = ["jpeg"]}
 itertools = "0"
+jiff = { version = "0.2", default-features = false, features = ["std"], optional = true }
 log = "0"
 maybe-owned = "0"
 once_cell = "1"
@@ -78,7 +79,8 @@ thread_safe = []
 core_graphics = ["static"]
 paragraph = []
 flatten = []
-dates = ["dep:chrono"] # Enables annotation date-setting functions and automatic modification timestamps. Currently backed by the `chrono` crate; see README changelog for 0.9.7.
+dates = ["dep:jiff"] # Enables PdfDate, the annotation date-setting functions, and automatic modification timestamps.
+chrono = ["dates", "dep:chrono"] # Migration aid: lets chrono::DateTime be passed to date-setting functions. Will be removed in a future release.
 console_log = [] # A WASM-specific feature that initializes console_log-based logging to the browser console.
 
 # By default, pdfium-render uses the latest version of the image crate. To explicitly use
